@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Exo 2", sans-serif;
+}
+
+
+
+.contenitorePagina {
+    position: relative;
+}
+
+
+#contenitoreProdotti {
+    border: 1px solid red;
+    margin-top: 50px;
+}
+
+
+
+/**
+* ! STILE FORM 
+*/
+
+.aggiungiNuoviProdotti {
+    margin-top: 40px; 
+}
+
+#prodottiNuovi {
+    display: flex;
+    flex-direction: column;
+    padding: 0 100px 0 100px;
+}
+
+
+
+
+
+
+/**
+* ! STILE CARD PRODOTTI
+*/
+
+
+.cardProdotti {
+    border: 1px solid lime;
+    width: 300px;
+    gap: 10px;
+    margin-top: 40px;  
+}
+
+
+
+
+
+/** 
+* ! FOOTER*/
+
+/*
+* TODO: footer deve essere fissato sul fondo della pagina ma si deve vedere solo quando si va in fondo alla pagina
+*/
+
+.infoGeneriche {
+    max-height: 10vh;
+}
+.infoGeneriche p {
+    color: white;
+    margin: 5px 0 5px 5px;
+}
+.info {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
