@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 price: document.getElementById("number").value,
             }       
             
-            
             //richiesta invio aggiunta elementi 
             let response = await fetch(urlDatiProdotti, {
              method: "POST",
@@ -92,12 +91,12 @@ document.addEventListener("DOMContentLoaded", function(){
             /**
              * TODO RICHIAMARE LA FUNZIONE CHE CREA LA CARD
              */
+          
             //return aggiungiItem
             
          }
 
-console.log(nuovoItem())
-
+        console.log(nuovoItem())
 
          /**
           * ! mi esce errore 400 e l'endpoint risulta non accessibile di nuovo
@@ -120,7 +119,7 @@ console.log(nuovoItem())
         const imgProdotto = document.createElement("img");
         imgProdotto.className = "imgProductCard";
         //l'immagine dovrà contenere l'url
-        imgProdotto.src = prodotto.imageUrl;
+        imgProdotto.url = prodotto.imageUrl;
 
         const nomeProdotto = document.createElement("h4");
         const marcaProdotto = document.createElement("p");
@@ -132,7 +131,6 @@ console.log(nuovoItem())
          */
         //aggiungere tasto modifica
         //aggiungere tassto delete
-
 
         //riporto i valori dell'oggetto all'interno degli elementi creati
         imgProdotto.innerHTML = prodotto.imageUrl;
@@ -158,8 +156,7 @@ console.log(nuovoItem())
         cardsPerInserireProdotti.appendChild(card);
 
         }
-        creaCard()
-
+        
 
 /*
 
