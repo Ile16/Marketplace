@@ -18,7 +18,7 @@ const urlDatiProdotti = "https://striveschool-api.herokuapp.com/api/product/";
 
 //funzione con evento al caricamento della pagina
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function(){ })
    
 
     /**
@@ -27,22 +27,19 @@ document.addEventListener("DOMContentLoaded", function(){
     const ottengoProdotto = async() => {
        const response =  await fetch(urlDatiProdotti, {
             headers: {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU0OTMyOTgsImV4cCI6MTcxNjcwMjg5OH0.jrqqcW5Qg_XURt1HzzDr5Sl0BzaXd5Ov81nNrc8HtKY",
+            "Authorization": "Bearer ZZVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU0OTMyOTgsImV4cCI6MTcxNjcwMjg5OH0.jrqqcW5Qg_XURt1HzzDr5Sl0BzaXd5Ov81nNrc8HtKY",
         }
         })
 
-        /**
-     * TODO: ITERAZIONE  prodotti.forEach((prodotto) => creaCard(prodotto))
-     */
-        .then((response) => response.json())
+  /*       .then((response) => response.json())
         .then((prodotti) => {
             prodotti.forEach((prodotto) => creaCard(prodotto)); //su ogni prodotto creo la card
         })
 
         .catch((error) => 
-        console.error("errore:", error));
-  /*       const prodotti = await response.json();
-       // prodotti.forEach((prodotto) => creaCard(prodotto));
+        console.error("errore:", error)); */
+        const prodotti = await response.json();
+        prodotti.forEach((prodotto) => creaCard(prodotto));
         return prodotti
         //console.log(prodotti) */
     }
@@ -73,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function(){
          })
 
          
-        .then((response) => response.json())
+     /*    .then((response) => response.json())
         .then((nuovoProdotto)=>{
             creaCard(nuovoProdotto);
             console.log("Prodotto aggiunto con successo! ")
@@ -81,31 +78,23 @@ document.addEventListener("DOMContentLoaded", function(){
         })
         .catch((error) => {
             console.error("Errore durante l'aggiunta del prodotto: ", error);
-        })
+        }) */
 
-         //if(!response.ok){
-             //  alert("Ops..qualcosa è andato storto");
-            //}
+         if(!response.ok){
+          alert("Ops..qualcosa è andato storto");
+        }
+        const aggiungiItem = await response.json()
+        creaCard(aggiungiItem);
 
-            //const aggiungiItem = await response.json()
-            /**
-             * TODO RICHIAMARE LA FUNZIONE CHE CREA LA CARD
-             */
-          
-            //return aggiungiItem
-            
+        //ripulire il form 
+        document.getElementById("name").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("brand").value = "";
+        document.getElementById("img").value = "";
+        document.getElementById("number").value = "";
          }
-
-        console.log(nuovoItem())
-
-         /**
-          * ! mi esce errore 400 e l'endpoint risulta non accessibile di nuovo
-          */
-         
-
-/**
- * ! item all'interno form 
- */
+        
+        //console.log(nuovoItem())
 
         //POINTER CONTENITORE
         const cardsPerInserireProdotti = document.getElementById("contenitoreProdotti");
@@ -119,18 +108,61 @@ document.addEventListener("DOMContentLoaded", function(){
         const imgProdotto = document.createElement("img");
         imgProdotto.className = "imgProductCard";
         //l'immagine dovrà contenere l'url
-        imgProdotto.url = prodotto.imageUrl;
+        imgProdotto.src = prodotto.imageUrl;
 
         const nomeProdotto = document.createElement("h4");
         const marcaProdotto = document.createElement("p");
         const descrizioneProdotto = document.createElement("p");
         const prezzoProdotto = document.createElement("p");
 
-        /**
-         * TODO:
-         */
+
         //aggiungere tasto modifica
-        //aggiungere tassto delete
+        const pulsanteModificaCard = document.createElement("button");
+        pulsanteModificaCard.className = "modificaCard";
+        pulsanteModificaCard.textContent = "Modifica"
+
+        //aggiungere tasto delete
+        const pulsanteEliminaCard = document.createElement("button");
+        pulsanteEliminaCard.className = "eliminaCard";
+        pulsanteEliminaCard.textContent = "Elimina";
+
+        card.dataset.productId = prodotto._id; //id disponibile sotto la voce _id (?)
+        
+        //gestire l'eliminazione
+/* 
+        async function gestioneDelete(evento) {
+            const eliminaCard = evento.target.closest("cardProdotti")
+            if(cardDaEliminare) {
+                const IdPrdotto = cardDaEliminare.dataset.IdPrdotto;
+
+                if(IdPrdotto) {
+                    try {
+                        const response = await fech (`${urlDatiProdotti}/ $(IdProdotto`, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU0OTMyOTgsImV4cCI6MTcxNjcwMjg5OH0.jrqqcW5Qg_XURt1HzzDr5Sl0BzaXd5Ov81nNrc8HtKY",
+                        }
+                        });*/
+
+                        /**
+                         * TODO: FINIRE DI RENDIRE DINAMICO IL PULSANTE DELETE
+                         */
+/*                         if(response.ok) {
+                            eliminaProdotto(cardDaEliminare);
+                            alert("eliminato con successo");
+                        } else {
+                            alert("ERRORE");
+                        }
+                    }catch (error) {
+                        console.error("errore durante la richiesta")
+                    } 
+                }
+             } */
+        
+
+     
+
 
         //riporto i valori dell'oggetto all'interno degli elementi creati
         imgProdotto.innerHTML = prodotto.imageUrl;
@@ -139,12 +171,12 @@ document.addEventListener("DOMContentLoaded", function(){
         descrizioneProdotto.innerHTML = prodotto.description;
         prezzoProdotto.innerHTML = prodotto.price;
 
+        
         /**
          * TODO:
          */
         //riportare i vlori all'interno del button modifica 
         //riportare i vlori all'interno del button elimina
-
 
         //aggiungere gli elementi dei valori inseriti dall'utente nella costante card
         card.appendChild(imgProdotto);
@@ -152,29 +184,11 @@ document.addEventListener("DOMContentLoaded", function(){
         card.appendChild(marcaProdotto);
         card.appendChild(descrizioneProdotto);
         card.appendChild(prezzoProdotto);
+        card.appendChild(pulsanteModificaCard); //lo aggiungo alla card
+        card.appendChild(pulsanteEliminaCard); //stessa cosa
 
         cardsPerInserireProdotti.appendChild(card);
-
-        }
-        
-
-/*
-
-
-    
-    card.appendChild(nomeItem);
-    card.appendChild(descrizioneItem);
-    card.appendChild(marcaItem);
-    card.appendChild(immagineItem);
-    card.appendChild(prezzoItem);
-
-    cardsPerInserireProdotti.appendChild(card);
-}
-
-const aggiungiProdotto = document.getElementById("buttonAggiungi");
-
-aggiungiProdotto.addEventListener("click", creaCard);
-} */
+        }     
 
 
 
@@ -187,4 +201,4 @@ aggiungiProdotto.addEventListener("click", creaCard);
             console.log(prodotto);
         }*/
 
-    })
+    

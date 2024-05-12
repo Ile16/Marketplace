@@ -47,7 +47,7 @@
         <!--FORM-->
         <!--per aggiungere nuovi prodotti-->
         <div class="aggiungiNuoviProdotti container-fluid ">
-            <form id="prodottiNuovi" name="datiProdotto">
+            <form id="formProdotti" name="datiProdotto">
                 <label for="name">Nome prodotto:</label>
                 <input type="text" id="name" value="" required>
                 <label for="description">Descrizione prodotto</label>
@@ -59,7 +59,7 @@
                 <label for="number">Prezzo</label>
                 <input type="text" id="number" value="" required>
                 <div class="stileButton">
-                    <button type="aggiungi" id="buttonAggiungi" onclick="creaCard()">Aggiungi</button>
+                    <button type="button" id="buttonAggiungi" onclick="nuovoItem()">Aggiungi</button>
                 </div>
             </form>
         </div>
@@ -67,9 +67,9 @@
 
 
         <!--LISTA PRODOTTI DA CREARE-->
-        <div class="container text-center container-fluid " id="contenitoreProdotti">
+        <div class=container text-center container-fluid " id=" contenitoreProdotti">
             <h5>Lista prodotti</h5>
-            <!-- TODO: SU JS DEVO ITERARE LE SCHEDE PRODOTTO E CREARE PIù ELEMENTI CON ID-->
+
 
         </div>
 
@@ -79,20 +79,6 @@
 
 
 
-
-    <!--TODO: FISSARE IL FOOTER-->
-    <!--FOOTER-->
-    <footer class="infoGeneriche bg-dark border-bottom border-body text-center fixed-bottom" data-bs-theme="dark">
-        <div class="col info">
-            <div class="copy">
-                <p>Copyright © 2024</p>
-            </div>
-            <div class="nameCompany">
-                <p>MARKETPLACE</p>
-            </div>
-        </div>
-    </footer>
-    <!--FOOTER-->
 
 
     <!--JS BOOTSTRAP-->
