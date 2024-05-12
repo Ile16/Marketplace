@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){ })
     const ottengoProdotto = async() => {
        const response =  await fetch(urlDatiProdotti, {
             headers: {
-            "Authorization": "Bearer ZZVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU0OTMyOTgsImV4cCI6MTcxNjcwMjg5OH0.jrqqcW5Qg_XURt1HzzDr5Sl0BzaXd5Ov81nNrc8HtKY",
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU1NTYyNDgsImV4cCI6MTcxNjc2NTg0OH0.LDOjYso5_jBYXpEk4tCXezAX8_p2OuxCn9l3_HmSd7Y",
         }
         })
 
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(){ })
              method: "POST",
              headers: {
                  "Content-Type": "application/json",
-                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU0OTMyOTgsImV4cCI6MTcxNjcwMjg5OH0.jrqqcW5Qg_XURt1HzzDr5Sl0BzaXd5Ov81nNrc8HtKY",
+                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU1NTYyNDgsImV4cCI6MTcxNjc2NTg0OH0.LDOjYso5_jBYXpEk4tCXezAX8_p2OuxCn9l3_HmSd7Y",
              },
              body: JSON.stringify(nuovoProdotto),
          })
@@ -126,42 +126,8 @@ document.addEventListener("DOMContentLoaded", function(){ })
         pulsanteEliminaCard.className = "eliminaCard";
         pulsanteEliminaCard.textContent = "Elimina";
 
-        card.dataset.productId = prodotto._id; //id disponibile sotto la voce _id (?)
+        //card.dataset.productId = prodotto._id; //id disponibile sotto la voce _id (?)
         
-        //gestire l'eliminazione
-/* 
-        async function gestioneDelete(evento) {
-            const eliminaCard = evento.target.closest("cardProdotti")
-            if(cardDaEliminare) {
-                const IdPrdotto = cardDaEliminare.dataset.IdPrdotto;
-
-                if(IdPrdotto) {
-                    try {
-                        const response = await fech (`${urlDatiProdotti}/ $(IdProdotto`, {
-                            method: "DELETE",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU0OTMyOTgsImV4cCI6MTcxNjcwMjg5OH0.jrqqcW5Qg_XURt1HzzDr5Sl0BzaXd5Ov81nNrc8HtKY",
-                        }
-                        });*/
-
-                        /**
-                         * TODO: FINIRE DI RENDIRE DINAMICO IL PULSANTE DELETE
-                         */
-/*                         if(response.ok) {
-                            eliminaProdotto(cardDaEliminare);
-                            alert("eliminato con successo");
-                        } else {
-                            alert("ERRORE");
-                        }
-                    }catch (error) {
-                        console.error("errore durante la richiesta")
-                    } 
-                }
-             } */
-        
-
-     
 
 
         //riporto i valori dell'oggetto all'interno degli elementi creati
@@ -188,8 +154,9 @@ document.addEventListener("DOMContentLoaded", function(){ })
         card.appendChild(pulsanteEliminaCard); //stessa cosa
 
         cardsPerInserireProdotti.appendChild(card);
-        }     
 
+        }     
+ 
 
 
          /**
@@ -200,5 +167,3 @@ document.addEventListener("DOMContentLoaded", function(){ })
             const prodotto = await response.json();
             console.log(prodotto);
         }*/
-
-    
