@@ -31,17 +31,10 @@ document.addEventListener("DOMContentLoaded", function(){ })
         }
         })
 
-  /*       .then((response) => response.json())
-        .then((prodotti) => {
-            prodotti.forEach((prodotto) => creaCard(prodotto)); //su ogni prodotto creo la card
-        })
-
-        .catch((error) => 
-        console.error("errore:", error)); */
         const prodotti = await response.json();
         prodotti.forEach((prodotto) => creaCard(prodotto));
         return prodotti
-        //console.log(prodotti) */
+
     }
     ottengoProdotto()
 
@@ -68,17 +61,6 @@ document.addEventListener("DOMContentLoaded", function(){ })
              },
              body: JSON.stringify(nuovoProdotto),
          })
-
-         
-     /*    .then((response) => response.json())
-        .then((nuovoProdotto)=>{
-            creaCard(nuovoProdotto);
-            console.log("Prodotto aggiunto con successo! ")
-            alert("Prodotto aggiunto con successo! "); // messaggio di conferma
-        })
-        .catch((error) => {
-            console.error("Errore durante l'aggiunta del prodotto: ", error);
-        }) */
 
          if(!response.ok){
           alert("Ops..qualcosa è andato storto");
@@ -135,15 +117,12 @@ document.addEventListener("DOMContentLoaded", function(){ })
 
 
 
-
-
         //riporto i valori dell'oggetto all'interno degli elementi creati
         imgProdotto.innerHTML = prodotto.imageUrl;
         nomeProdotto.innerHTML = prodotto.name;
         marcaProdotto.innerHTML = prodotto.brand;
         descrizioneProdotto.innerHTML = prodotto.description;
         prezzoProdotto.innerHTML = `Prezzo: ${prodotto.price} €`;
-
 
         //aggiungere gli elementi dei valori inseriti dall'utente nella costante card
         card.appendChild(imgProdotto);
@@ -155,16 +134,5 @@ document.addEventListener("DOMContentLoaded", function(){ })
         card.appendChild(pulsanteEliminaCard); //stessa cosa
 
         cardsPerInserireProdotti.appendChild(card);
-
         }     
  
-
-
-         /**
-          * TODO riportare la lista prodotto nella pagina principale al caricamento della pagina
-         /*
-         window.onload = async () => {
-            const response = await fetch(urlDatiProdotti);
-            const prodotto = await response.json();
-            console.log(prodotto);
-        }*/
