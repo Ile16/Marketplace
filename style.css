@@ -28,7 +28,6 @@
 * ! STILE CARD PRODOTTI
 */
 
-
 .cardProdotti {
     border: 0.5px solid rgb(239, 239, 239);
     width: 100%;
@@ -43,12 +42,9 @@
     border: 0.5px solid gray;
 }
 
-
 .imgProductCard {
    width: 100px ;
 }
-
-
 
 
 

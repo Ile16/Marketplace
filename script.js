@@ -61,6 +61,9 @@ function creaCard(prodotto) {
     const visualizzaCard = document.createElement("button");
     visualizzaCard.className = "visualizza";
     visualizzaCard.textContent = "Visualizza";
+    visualizzaCard.addEventListener("click", function(){
+        window.location.href = "back.html";
+    })
 
 
     card.appendChild(imgProdotto);
