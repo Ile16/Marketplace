@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function(){ })
         nomeProdotto.innerHTML = prodotto.name;
         marcaProdotto.innerHTML = prodotto.brand;
         descrizioneProdotto.innerHTML = prodotto.description;
-        prezzoProdotto.innerHTML = prodotto.price;
+        prezzoProdotto.innerHTML = `Prezzo: ${prodotto.price} €`;
 
 
         //aggiungere gli elementi dei valori inseriti dall'utente nella costante card
