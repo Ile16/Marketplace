@@ -12,18 +12,14 @@
 const urlDatiProdotti = "https://striveschool-api.herokuapp.com/api/product/";
 
 
-/**
- * ! FUNZIONE GET METHOD
- */
-
 //funzione con evento al caricamento della pagina
-
 document.addEventListener("DOMContentLoaded", function(){ })
    
 
     /**
      * * GET
      */
+
     const ottengoProdotto = async() => {
        const response =  await fetch(urlDatiProdotti, {
             headers: {
@@ -38,7 +34,9 @@ document.addEventListener("DOMContentLoaded", function(){ })
     }
     ottengoProdotto()
 
-//
+    /**
+     * * POST
+     */
 
         //METHOD POST con il nuovo prodotto
         const nuovoItem = async () => {
@@ -96,26 +94,21 @@ document.addEventListener("DOMContentLoaded", function(){ })
         const marcaProdotto = document.createElement("p");
         const descrizioneProdotto = document.createElement("p");
         const prezzoProdotto = document.createElement("p");
-
+        
 
         //aggiungere tasto modifica
         const pulsanteModificaCard = document.createElement("button");
         pulsanteModificaCard.className = "modificaCard";
-        pulsanteModificaCard.textContent = "Modifica"
+        pulsanteModificaCard.textContent = "Modifica";
+        pulsanteModificaCard.onclick = () => modificaProdotto(prodotto._id, card)
+                
 
         //aggiungere tasto delete
         const pulsanteEliminaCard = document.createElement("button");
         pulsanteEliminaCard.className = "eliminaCard";
         pulsanteEliminaCard.textContent = "Elimina";
-
+        pulsanteEliminaCard.onclick = () => eliminaProdotto(prodotto._id, card)
        
-        
-        //gestione DELETE CARD
-          /**
-           * TODO:ELIMINA CARD
-           */
-
-
 
         //riporto i valori dell'oggetto all'interno degli elementi creati
         imgProdotto.innerHTML = prodotto.imageUrl;
@@ -136,3 +129,77 @@ document.addEventListener("DOMContentLoaded", function(){ })
         cardsPerInserireProdotti.appendChild(card);
         }     
  
+        /**
+         * * FUNZIONE MODIFICA
+         */
+
+        function modificaProdotto(prodottoId, card) {
+
+            const nuovoNomeProdotto = prompt(
+                "Modifica nome prodotto:",
+                card.querySelector("h4").innerText
+            );
+
+            const nuovaImmagineProdotto = prompt(
+                "Modifica immagine prodotto:",
+                card.querySelector("p").src
+            );
+
+            const nuovaMarcaProdotto = prompt(
+                "Modifica brand prodotto:",
+                card.querySelector("p").innerText
+            );
+
+            const nuovaDescrizioneProdotto = prompt(
+                "Modifica descrizione prodotto",
+                card.querySelector("p").innerText
+            )
+            const nuovoPrezzoProdotto = prompt(
+                "Modifica prezzo prodotto",
+                card.querySelector("p").innerText
+            ) 
+
+            //se esistono/se sono stati inseriti
+            if (nuovoNomeProdotto && nuovaImmagineProdotto && nuovaMarcaProdotto && nuovaDescrizioneProdotto && nuovoPrezzoProdotto) {
+                fetch(urlDatiProdotti + prodottoId, {
+                    method: "PUT",
+                    headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU1NTYyNDgsImV4cCI6MTcxNjc2NTg0OH0.LDOjYso5_jBYXpEk4tCXezAX8_p2OuxCn9l3_HmSd7Y",
+                },
+                body: JSON.stringify({imageUrl: nuovaImmagineProdotto, name: nuovoNomeProdotto, brand: nuovaMarcaProdotto , description: nuovaDescrizioneProdotto, price: nuovoPrezzoProdotto}),
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Prodotto aggiornato:", data);
+                    card.querySelector("p").src = prodotto.imageUrl;
+                    card.querySelector("h4").innerText = prodotto.name;
+                    card.querySelector("p").innerText = prodotto.brand;
+                    card.querySelector("p").innerText = prodotto.description;
+                    card.querySelector("p").innerText = prodotto.price;
+                })
+                .catch((error) => console.error("errore:", error))
+            }
+        }
+        
+        /**
+         * * FUNZIONE ELIMINA 
+         */
+
+        function eliminaProdotto(prodottoId, card) {
+            if(confirm("Vuoi eliminare il prodotto?")) {
+                fetch(urlDatiProdotti + prodottoId, {
+                    method: "DELETE",
+                    headers: {
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjN2M3MWIxYzc3ZjAwMTUwNjg0YTEiLCJpYXQiOjE3MTU1NTYyNDgsImV4cCI6MTcxNjc2NTg0OH0.LDOjYso5_jBYXpEk4tCXezAX8_p2OuxCn9l3_HmSd7Y",
+                    }
+                })
+                .then(() => {
+                    console.log("Prodotto eliminato");
+                    card.remove()
+                })
+                .catch((error) => {
+                    console.error("errore:", error)
+                })
+            }
+        }
